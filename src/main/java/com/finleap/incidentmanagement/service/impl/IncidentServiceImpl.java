@@ -42,8 +42,7 @@ public class IncidentServiceImpl implements IncidentService {
         incidentReport.setDescription(incidentDTO.getDescription());
         incidentReport.setComments(incidentDTO.getComments());
 
-        User creator = userRepository.findById(creatorId)
-                .orElseThrow(() -> new IncidentManagementNotFoundException(USER_ENTITY, incidentDTO.getAssigneeId().toString()));
+        User creator = userRepository.findById(creatorId).orElseThrow(() -> new IncidentManagementNotFoundException(USER_ENTITY, creatorId.toString()));
 
         IncidentUser creatorUser = new IncidentUser();
         creatorUser.setIncident(incidentReport);
